@@ -1,0 +1,260 @@
+<script>
+    function validate() {
+        var rollno = document.getElementById("rollno");
+        var name = document.getElementById("name");
+        var fname = document.getElementById("fname");
+        var mname = document.getElementById("mname");
+        var contactno = document.getElementById("contactno");
+        var emailaddress = document.getElementById("emailaddress");
+        var password = document.getElementById("password");
+        var confirmpassword = document.getElementById("confirmpassword");
+        var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (rollno.value == "" || rollno.value == null) {
+            alert('please enter roll no');
+            rollno.focus();
+        }
+        else if (isNaN(rollno.value)) {
+            alert('please enter number only')
+            rollno.focus();
+        }
+        else if (name.value == "" || name.value == null) {
+            alert('please enter name');
+            name.focus();
+        }
+
+        else if (dov.value == "" || dob.value == null) {
+            alert('please enter contactno');
+            dob.focus();
+
+        }
+        else if (category.value == "" || category.value == null) {
+            alert('please enter contactno');
+            category.focus();
+
+        }
+        else if (isNaN(category.value)) {
+            alert('please enter number in contact no');
+            category.focus();
+        }
+        else if (isNaN(dob.value)) {
+            alert('please enter number in contact no');
+            dob.focus();
+        }
+
+        else if (mobileno.value == "" || mobileno.value == null) {
+            alert('please enter contactno');
+            mobileno.focus();
+
+        }
+        else if (isNaN(mobileno.value)) {
+            alert('please enter number in contact no');
+            mobileno.focus();
+        }
+        else if (mobileno.value.length != 10) {
+            alert('please enter 10 digit no');
+            mobileno.focus();
+
+        }
+        else if (emailaddress.value == "" || emailaddress.value == null) {
+            alert('please enter email address');
+            emailaddress.focus();
+        }
+        else if (!emailexp.test(emailaddress.value)) {
+            alert('please enter valid email address');
+            emailaddress.focus();
+        }
+        else if (password.value == "" || password.value == null) {
+            alert('please enter password');
+            password.focus();
+
+        }
+        else if (password.value.length < 8) {
+            alert('please enter atleast 8 characters');
+            password.focus();
+        }
+        else if (collegename.value == "" || collegename.value == null) {
+            alert('please enter contactno');
+            collegename.focus();
+
+        }
+        else if (isNaN(collegename.value)) {
+            alert('please enter number in contact no');
+            collegename.focus();
+        }
+        else if (branch.value == "" || branch.value == null) {
+            alert('please enter contactno');
+            branch.focus();
+
+        }
+        else if (isNaN(branch.value)) {
+            alert('please enter number in contact no');
+            branch.focus();
+        }
+        else if (year.value == "" || year.value == null) {
+            alert('please enter contactno');
+            year.focus();
+
+        }
+        else if (isNaN(year.value)) {
+            alert('please enter number in contact no');
+            year.focus();
+        }
+        else {
+            alert('Form was Submitted');
+            document.getElementById("frmregistration").submit();
+        }
+
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <style>
+        input[type=text],input[type=email],input[type=tel],input[type=password],
+        select {
+            width: 50%;
+            height: 25px;
+            padding: 7px 9px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 50%;
+            /* height: 25px; */
+            font-size:medium;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .div {
+            height: 620px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+     
+        }
+f
+        table {
+            margin-top: 30px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container div">
+        {% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong style="color: green; text-align: center;">{{message}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+        <h2 style="text-align: center; margin-top: 30px;">Student Registration Form</h2>
+        <form class="form-group" id="frmregistration" method="post" action="{% url 'myApp:index' %}">
+            {% csrf_token %}
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="category">Category:</label><br>
+            <input type="text" id="category" name="category" required><br>
+
+            <label for="emailaddress">Email:</label><br>
+            <input type="email" id="emailaddress" name="emailaddress" required><br>
+
+            <label for="mobileno">Mobile:</label><br>
+            <input type="tel" id="mobileno" name="mobileno" pattern="[0-9]{10}" required><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" minlength="6" required><br>
+
+            <label for="collegename">collegename:</label><br>
+            <input type="text" id="collegename" name="collegename" required><br>
+
+            <label for="branch">Branch:</label><br>
+            <input type="text" id="branch" name="branch" required><br>
+
+            <label for="year">Current Year:</label><br>
+            <input type="text" id="year" name="year" required><br>
+
+            <label for="dob">DOB:</label><br>
+            <input type="date" id="dob" name="dob" required><br>
+            
+            <button type="submit" class="btn btn-success" style="border: 1px solid yellowgreen;"
+                onclick="validate()">Submit</button>
+
+        </form>
+    </div>
+    <hr>
+    <center style="color: red; font-weight: 1000; font-size: 20px;">All Registered Students Details</center>
+    <hr>
+    <table border="1" padding="5px" class="table table-success table-striped table-borderd">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Category</th>
+                <th scope="col">Student Email Id</th>
+                <th scope="col">Mobile No</th>
+                <th scope="col">Password</th>
+                <th scope="col">College Name</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Current Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stu in studetails %}
+            <tr>
+                <!-- <th scope="row">1</th> -->
+                <td>{{stu.id}}</td>
+                <td>{{stu.name}}</td>
+                <td>{{stu.dob}}</td>
+                <td>{{stu.category}}</td>
+                <td>{{stu.emailaddressz}}</td>
+                <td>{{stu.mobileno}}</td>
+                <td>{{stu.password}}</td>
+                <td>{{stu.collegename}}</td>
+                <td>{{stu.branch}}</td>
+                <td>{{stu.year}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+
+</html>
